@@ -1,4 +1,4 @@
-package hilos;
+package EjemploHilos;
 
 public class Thread2 extends Thread{
     public void run(){

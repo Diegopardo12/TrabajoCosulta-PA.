@@ -1,10 +1,10 @@
-package example;
+package EjemploActores;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 
-public class GreeterMain extends AbstractBehavior<GreeterMain.SayHello> {
+public class SaludoEjecutor extends AbstractBehavior<SaludoEjecutor.SayHello> {
 
     public static class SayHello {
         public final String nombre;
@@ -14,16 +14,16 @@ public class GreeterMain extends AbstractBehavior<GreeterMain.SayHello> {
         }
     }
 
-    private final ActorRef<Greeter.Greet> greeter;
+    private final ActorRef<Saludo.Greet> greeter;
 
     public static Behavior<SayHello> create() {
-        return Behaviors.setup(GreeterMain::new);
+        return Behaviors.setup(SaludoEjecutor::new);
     }
 
-    private GreeterMain(ActorContext<SayHello> context) {
+    private SaludoEjecutor(ActorContext<SayHello> context) {
         super(context);
         //#create-actors
-        greeter = context.spawn(Greeter.create(), "greeter");
+        greeter = context.spawn(Saludo.create(), "greeter");
         //#create-actors
     }
 
@@ -34,9 +34,9 @@ public class GreeterMain extends AbstractBehavior<GreeterMain.SayHello> {
 
     private Behavior<SayHello> onSayHello(SayHello command) {
         //#create-actors
-        ActorRef<Greeter.Greeted> rpta =
-                getContext().spawn(GreeterBot.create(4), command.nombre);
-        greeter.tell(new Greeter.Greet(command.nombre, rpta));
+        ActorRef<Saludo.Greeted> rpta =
+                getContext().spawn(SaludoBot.create(4), command.nombre);
+        greeter.tell(new Saludo.Greet(command.nombre, rpta));
         //#create-actors
         return this;
     }

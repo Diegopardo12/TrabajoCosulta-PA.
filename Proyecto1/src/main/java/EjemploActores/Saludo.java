@@ -1,11 +1,11 @@
-package example;
+package EjemploActores;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.*;
 
 // #greeter
-public class Greeter extends AbstractBehavior<Greeter.Greet> {
+public class Saludo extends AbstractBehavior<Saludo.Greet> {
 
   public static final class Greet {
     public final String sujeto;
@@ -28,10 +28,10 @@ public class Greeter extends AbstractBehavior<Greeter.Greet> {
   }
 
   public static Behavior<Greet> create() {
-    return Behaviors.setup(Greeter::new);
+    return Behaviors.setup(Saludo::new);
   }
 
-  private Greeter(ActorContext<Greet> context) {
+  private Saludo(ActorContext<Greet> context) {
     super(context);
   }
 

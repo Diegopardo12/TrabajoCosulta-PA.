@@ -1,4 +1,4 @@
-package hilos;
+package EjemploHilos;
 
 public class Threadmain {
     public static void main(String[] args) throws InterruptedException {
